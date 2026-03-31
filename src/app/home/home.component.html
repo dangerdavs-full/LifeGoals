@@ -1,0 +1,33 @@
+<div class="home-container">
+  <!-- Columna Izquierda: Formulario -->
+  <div class="card add-goal-section">
+    <h2>Add a life goal</h2>
+    <p>Use this form below to add a new life goal</p>
+    
+    <div class="form-group">
+      <input 
+        type="text" 
+        [(ngModel)]="newMetaText" 
+        placeholder="Escribe aquí tu meta (ej. go to moon)"
+        (keyup.enter)="addMeta()"
+      />
+      <button class="btn-add" (click)="addMeta()">Add an item</button>
+    </div>
+  </div>
+
+  <!-- Columna Derecha: Lista de Metas -->
+  <div class="goals-list-section">
+    <h2>Your goal list ( {{ metas.length }} )</h2>
+    
+    <div class="goals-grid">
+      <div class="goal-card" *ngFor="let meta of metas">
+        <p class="goal-text">{{ meta.meta }}</p>
+        <button class="danger" (click)="deleteMeta(meta.id)">Delete</button>
+      </div>
+    </div>
+    
+    <div *ngIf="metas.length === 0" class="empty-state">
+      <p>Aún no tienes metas registradas. ¡Anímate a crear una!</p>
+    </div>
+  </div>
+</div>
